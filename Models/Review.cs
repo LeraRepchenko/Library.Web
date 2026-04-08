@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Web.Models
@@ -11,20 +8,18 @@ namespace Library.Web.Models
         public int Id { get; set; }
 
         [Required]
-        [Range(1, 5, ErrorMessage = "Оценка должна быть от 1 до 5")]
+        [Range(1, 5)]
         public int Rating { get; set; }
 
-        [StringLength(1000, ErrorMessage = "Комментарий не может превышать 1000 символов")]
+        [StringLength(1000)]
         public string? Comment { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // Внешние ключи
         public int BookId { get; set; }
-        public int ReaderId { get; set; }
+        public string ReaderId { get; set; }  // ← string
 
-        // Навигационные свойства
         [ForeignKey("BookId")]
         public Book Book { get; set; }
 

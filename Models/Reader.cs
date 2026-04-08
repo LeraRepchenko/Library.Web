@@ -1,22 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.Web.Models
 {
-    public class Reader
+    // Наследуем от IdentityUser для встроенной аутентификации
+    public class Reader : IdentityUser
     {
-        public int Id { get; set; }
+        [PersonalData]
+        public string? FirstName { get; set; }
 
-        [Required(ErrorMessage = "Имя обязательно")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "Имя должно содержать от 2 до 100 символов")]
-        public string FirstName { get; set; }
-
-        [Required(ErrorMessage = "Фамилия обязательна")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "Фамилия должна содержать от 2 до 100 символов")]
-        public string LastName { get; set; }
-
-        [Required(ErrorMessage = "Email обязателен")]
-        [EmailAddress(ErrorMessage = "Некорректный формат email")]
-        public string Email { get; set; }
+        [PersonalData]
+        public string? LastName { get; set; }
 
         public string? Phone { get; set; }
 

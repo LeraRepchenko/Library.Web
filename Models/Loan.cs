@@ -18,7 +18,7 @@ namespace Library.Web.Models
 
         // Внешние ключи
         public int BookId { get; set; }
-        public int ReaderId { get; set; }
+        public string ReaderId { get; set; }  // ← string (не int!)
 
         // Навигационные свойства
         [ForeignKey("BookId")]
@@ -27,7 +27,6 @@ namespace Library.Web.Models
         [ForeignKey("ReaderId")]
         public Reader Reader { get; set; }
 
-        // Вычисляемое свойство
         public bool IsOverdue => !ReturnDate.HasValue && DueDate < DateTime.UtcNow;
         public bool IsReturned => ReturnDate.HasValue;
     }

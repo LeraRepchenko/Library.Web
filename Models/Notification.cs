@@ -21,12 +21,10 @@ namespace Library.Web.Models
 
         public NotificationStatus Status { get; set; } = NotificationStatus.Unread;
 
-        // Внешние ключи
-        public int ReaderId { get; set; }
+        public string ReaderId { get; set; }  // ← string
         public int? BookId { get; set; }
         public int? LoanId { get; set; }
 
-        // Навигационные свойства
         [ForeignKey("ReaderId")]
         public Reader Reader { get; set; }
 
